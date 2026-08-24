@@ -62,6 +62,9 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - Registrar: GoDaddy.com, LLC
 - Nameservers: NS6135.HOSTGATOR.COM, NS6136.HOSTGATOR.COM
 - DNSSEC: unsigned.
+- 
+  ![WHOIS Screenshot](Screenshots/whois.png)
+  
 - ---
 
 ### 3.2 WhatWeb Analysis
@@ -72,6 +75,8 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - Technologies: WordPress 7.1,WordPress Download Manager 3.3.58.
 - Frameworks: Bootstrap[7.1].
 
+- ![WHATWEB Screenshot](Screenshots/whatweb.png)
+
 - ---
 
 - ### 3.3 NSLookup Analysis
@@ -81,6 +86,7 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - IPv4 Address: 192.232.216.135
 - DNS Server:  8.8.8.8
 
+![Nslookup Screenshot](Screenshots/nslookup.png)
 - ---
 
 - ### 3.4 DNSRecon Analysis
@@ -90,6 +96,8 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - NS Records: ns6136.hostgator.com 192.232.216.131, ns6135.hostgator.com 50.87.144.87
 - MX Records: mail.networkwalks.com 192.232.216.135
 - TXT Records: TXT networkwalks.com v=spf1 +a +mx +ip4:50.87.144.87 +include:websitewelcome.com ~all, TXT networkwalks.com google-site-verification=rr04eRmqHoWY3XemnizDNVK4q75X-Ij-mjgEeg-UsYI
+
+  ![Dnsrecon Screenshot](Screenshots/dnsrecon.png)
 
 - ---
 
@@ -102,6 +110,8 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 | `x-nginx-cache` | WordPress | Nginx FastCGI cache is active for WordPress |
 -WordPress REST API endpoint /wp-json/
 
+![Curl Screenshot](Screenshots/curl.png)
+
 ---
 
 ### 3.6 WAFW00F Analysis
@@ -111,13 +121,18 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - WAF Detected: Yes
 - WAF Type: ModSecurity (SpiderLabs) WAF
 
+![Wafw00f Screenshot](Screenshots/wafw00f.png)
+
+----
 ## 4: Network Scanning with Zenmap
 
 ### Task 1: Download & Install Zenmap on Windows
 
-#### Step 1: Download and install Zenmap
+#### Task 1: Download and install Zenmap
  Navigate to the official Nmap download page:
-   - URL: https://nmap.org/download.html
+   - URL: https://nmap.org/download.html.
+
+-![zenmap Screenshot](Screenshots/zenmap.png)
 ---
 
 ### Task 2: Find Your Local IP Address & LAN Subnet
@@ -125,6 +140,8 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 ### Using Command Prompt (ipconfig)
 
 - LAN Network is: 192.168.1.0/24
+
+- ![LAN NETWORK Screenshot](Screenshots/lan_network.png)
 
 ### Task 3: Find the List of Live Hosts/PCs in Your IP Subnet
 #### Using Zenmap GUI
@@ -162,6 +179,8 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 | 3 | 192.168.1.5 | 9A:76:20:61:9D:56  |
 | 4 | 192.168.1.39 | 4A:C6:C9:60:2B:AE   |
 
+-![Live Hosts](Screenshots/live_host%20ip%20mac%20address.png)
+
 ### Task 7: Display & Save Topology in PDF Format
 
 **Method:** Zenmap Topology Tab → Export to PDF
@@ -171,6 +190,9 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - **Save Location:** Desktop
 - **Format:** PDF
 - **Contents:** Network topology visualization with all live hosts
+
+![Wafw00f Screenshot](Screenshots/network%20topology.png)
+
 
 ## 5. Security Analysis
 

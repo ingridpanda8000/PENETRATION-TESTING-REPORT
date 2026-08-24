@@ -112,11 +112,112 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - WAF Detected: Yes
 - WAF Type: ModSecurity (SpiderLabs) WAF
 
-## 4. Network Scanning with Zenmap
+## 4: Network Scanning with Zenmap
 
 ### Task 1: Download & Install Zenmap on Windows
 
 #### Step 1: Download and install Zenmap
  Navigate to the official Nmap download page:
    - URL: https://nmap.org/download.html
+---
+
+### Task 2: Find Your Local IP Address & LAN Subnet
+
+### Using Command Prompt (ipconfig)
+
+- LAN Network is: 192.168.1.0/24
+
+### Task 3: Find the List of Live Hosts/PCs in Your IP Subnet
+#### Using Zenmap GUI
+**Scan Target:** 192.168.1.0/24
+**Scan Profile:** Ping Scan
+**Command:** `nmap -sn 192.168.1.0/24`
+
+- `192.168.1.3`
+- `192.168.1.4`
+- `192.168.1.5`
+- `192.168.1.39`
+- `192.168.1.40`
+
+ ### Task 4: Host Count in Your Subnet
+
+**Total IPs Scanned:** 256 (for /24 subnet)
+**Live Hosts Found:** 5 include my computer
+
+### Task 5: Live Host IP Addresses
+
+| # | IP Address | 
+|---|------------|
+| 1 | 192.168.1.3 |
+| 2 | 192.168.1.5 | 
+| 3 | 192.168.1.39 | 
+| 4 | 192.168.1.40 | 
+| 5 | 192.168.1.4 | 
+
+### Task 6: MAC Addresses of Live Hosts
+
+| # | IP Address | MAC Address | 
+|---|------------|-------------|
+| 1 | 192.168.1.3 | AA:CD:92:CD:3B:24 | 
+| 2 | 192.168.1.4 | 02:AA:C0:C3:60:38 | 
+| 3 | 192.168.1.5 | 9A:76:20:61:9D:56  |
+| 4 | 192.168.1.39 | 4A:C6:C9:60:2B:AE   |
+
+### Task 7: Display & Save Topology in PDF Format
+
+**Method:** Zenmap Topology Tab → Export to PDF
+
+**Output Details:**
+- **File Name:** `zenmap_topology.pdf`
+- **Save Location:** Desktop
+- **Format:** PDF
+- **Contents:** Network topology visualization with all live hosts
+
+## 5. Security Analysis
+
+### 5.1 Identified Issues
+
+The following security issues were identified during the footprinting and network scanning phases:
+
+| # | Issue | Severity | Affected System | Description |
+|---|-------|----------|-----------------|-------------|
+| 1 | Exposed Web Technologies | 🟡 Medium | Web Server | WhatWeb identified Nginx, WordPress 7.1,WordPress Download Manager 3.3.58. Attackers can target version-specific vulnerabilities. |
+| 2 | Server IP Address Disclosure | 🟡 Medium | Web Server | WHOIS and NSLookup revealed the server IP address (192.232.216.135). Attackers can bypass DNS protections and target infrastructure directly. |
+| 3 | Live Hosts Discovery | 🟡 Medium | Local Network | Zenmap scan identified 5 live hosts including gateway, web server, workstations, and laptops. Attackers can map network topology. |
+| 4 | HTTP Headers Exposure | 🟡 Medium | Web Server | cURL -I exposed response headers and exposed /wp-json. Aids technology fingerprinting. |
+| 5 | DNS Reconnaissance | 🟡 Medium | DNS Infrastructure | DNSRecon identified NS records, MX records, and TXT. Attackers can map DNS infrastructure. |
+| 6 | WAF Detection | 🟢 Low | Web Application | WAFW00F detected ModSecurity (SpiderLabs).|
+
+### 5.2 Severity Legend
+
+| Severity | Description | Action Required |
+|----------|-------------|-----------------|
+| 🔴 Critical | Immediate threat to system security | Action required within 1 hour |
+| 🔴 High | Significant vulnerability | Action required within 24 hours |
+| 🟡 Medium | Moderate risk requiring attention | Action required within 1 week |
+| 🟢 Low | Minor issue, monitor only | Action recommended |
+
+### 5.3 Recommended Actions
+
+| # | Issue | Action | Priority |
+|---|-------|--------|----------|
+| 1 | Exposed Web Technologies | Hide headers (Server, X-Powered-By). Update all software. | 🔴 High |
+| 2 | Server IP Disclosure | Use CDN/reverse proxy. Enable WHOIS privacy. | 🔴 High |
+| 3 | Live Hosts Discovery | Network segmentation. Close unused ports. | 🟡 Medium |
+| 4 | HTTP Headers Exposure | Remove sensitive headers. Add security headers (CSP, HSTS, X-Frame-Options). | 🔴 High |
+| 5 | DNS Reconnaissance | Restrict zone transfers. Hide subdomains. Implement DNSSEC. | 🟡 Medium |
+| 6 | WAF Detection |  WAF exists: Update rules. | 🟡 Medium |
+
+## 6. Conclusion
+
+This assignment provided hands-on experience with **footprinting tools** (WHOIS, WhatWeb, NSLookup, DNSRecon, cURL -I, WAFW00F) and **network scanning** (Zenmap).
+
+**Key Learnings:**
+- Reconnaissance techniques are essential for understanding attack surfaces
+- Information disclosure is a common vulnerability that can be easily remediated
+- Network topology mapping helps identify security risks
+- Professional documentation is critical in cybersecurity
+
+The practical experience gained has strengthened understanding of penetration testing methodologies and their importance in maintaining robust security postures.
+
 ---

@@ -62,7 +62,6 @@ The second phase uses Zenmap (Nmap GUI) to identify:
 - Registrar: GoDaddy.com, LLC
 - Nameservers: NS6135.HOSTGATOR.COM, NS6136.HOSTGATOR.COM
 - DNSSEC: unsigned.
-
 - ---
 
 ### 3.2 WhatWeb Analysis
